@@ -4,9 +4,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import LoginScreen from './screenscomponents/LoginScreen';
-import { createStackNavigaton } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createStackNavigaton();
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name='Login' component={LoginScreen} />
       </Stack.Navigator>
-    </NavigationContainer >
+    </NavigationContainer>
   );
 }
 

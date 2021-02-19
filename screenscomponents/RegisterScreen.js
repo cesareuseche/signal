@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { KeyboardAvoidingView } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import { Button, Input, Text } from "react-native-elements"
+import { auth } from '../firebase';
 
 
 const RegisterScreen = ({ navigation }) => {
@@ -19,7 +20,13 @@ const RegisterScreen = ({ navigation }) => {
     }, [navigation])
 
     const register = () => {
-
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(authUser => {
+                authUser.user.update({
+                    displayName: name,
+                    photoURL: imageUrl || "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png"
+                })
+            }).catch((error) => alert(error.message));
     }
 
     return (

@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Button, Input, Image } from "react-native-elements"
 import { StatusBar } from 'expo-status-bar'
 import { KeyboardAvoidingView } from 'react-native'
+import { auth } from '../firebase'
 
 
 const LoginScreen = ({ navigation }) => {
@@ -10,6 +11,16 @@ const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("");
 
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((authUser) => {
+            if (authUser) {
+                navigation.replace("Home") // .replace to send the user to the Home screen
+            }
+        })
+
+        return unsubscribe
+    })
 
     const signIn = () => {
 
@@ -29,13 +40,14 @@ const LoginScreen = ({ navigation }) => {
                     autoFocus type="Email"
                     value={email}
                     onChangeText={(text) => setEmail(text)}
-
                 />
                 <Input
                     placeholder="Password"
                     secureTextEntry
                     type="password"
-                    value={password} />
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                />
             </View>
             <Button title="Login" containerStyle={styles.button} onPress={signIn} />
             <Button title="Register" type="outline" containerStyle={styles.button} onPress={() => navigation.navigate('Register')} />

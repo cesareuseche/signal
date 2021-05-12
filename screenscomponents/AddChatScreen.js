@@ -15,7 +15,9 @@ const AddChatScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Input
-                placeholder="Enter a chat name" value={input} onChangeText={(text) => setInput(text)}
+                placeholder="Enter a chat name"
+                value={input}
+                onChangeText={(text) => setInput(text)}
             />
         </View>
     )

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { Button, Input, Image } from "react-native-elements"
 import { StatusBar } from 'expo-status-bar'
 import { KeyboardAvoidingView } from 'react-native'
+// Importing auth
 import { auth } from '../firebase'
 
 
@@ -22,9 +23,11 @@ const LoginScreen = ({ navigation }) => {
         return unsubscribe
     })
 
+    //Sign in function
     const signIn = () => {
         auth.signInWithEmailAndPassword(email, password).catch(error => alert(error))
     }
+
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <StatusBar style="light" />

@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { KeyboardAvoidingView } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import { Button, Input, Text } from "react-native-elements"
+//Importing auth
 import { auth } from '../firebase';
 
 
@@ -19,6 +20,7 @@ const RegisterScreen = ({ navigation }) => {
         })
     }, [navigation])
 
+    //Register an user function
     const register = () => {
         auth.createUserWithEmailAndPassword(email, password)
             .then(authUser => {

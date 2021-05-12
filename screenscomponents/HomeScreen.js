@@ -3,7 +3,8 @@ import { StyleSheet, ScrollView, Text, View, TouchableOpacity } from 'react-nati
 import { SafeAreaView } from 'react-native'
 //Importing Icons and Avatar placeholder
 import { Avatar } from 'react-native-elements'
-import { AntDesign, SimpleLineIcons } from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons'
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 // Importing auth
 import { auth } from '../firebase';
 
@@ -46,7 +47,7 @@ const HomeScreen = ({ navigation }) => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('AddChat')} activeOpacity={0.5}>
-                        <SimpleLineIcons name="pencil" size={24} color="#000" />
+                        <Icon name="chat-plus-outline" size={24} color="#000" />
                     </TouchableOpacity>
                 </View>
             )

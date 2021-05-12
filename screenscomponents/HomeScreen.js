@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react'
-import { StyleSheet, ScrollView, Text, View } from 'react-native'
+import { StyleSheet, ScrollView, Text, View, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native'
 import { Avatar } from 'react-native-elements'
 import { auth } from '../firebase';
@@ -18,9 +18,9 @@ const HomeScreen = ({ navigation }) => {
             headerTintColor: "black",
             headerLeft: () => (
                 <View style={{ marginLeft: 20 }}>
-                    <Avatar rounded source={{ uri: auth?.currentUser?.photoURL }}>
-
-                    </Avatar>
+                    <TouchableOpacity>
+                        <Avatar rounded source={{ uri: auth?.currentUser?.photoURL }} />
+                    </TouchableOpacity>
                 </View>
             )
         });

@@ -9,7 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screenscomponents/LoginScreen';
 import RegisterScreen from './screenscomponents/RegisterScreen'
 import HomeScreen from './screenscomponents/HomeScreen';
-import AddChat from './screenscomponents/AddChat';
+import AddChat from './screenscomponents/AddChatScreen';
 
 
 // Creating the Stack Navigator & global screen options styling

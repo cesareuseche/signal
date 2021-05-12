@@ -24,7 +24,7 @@ const AddChatScreen = ({ navigation }) => {
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Add a new Chat',
-            headerBacktitle: "Chats",
+            headerBackTitle: 'Chats'
         })
     }, [])
 
@@ -36,7 +36,7 @@ const AddChatScreen = ({ navigation }) => {
                 onChangeText={(text) => setInput(text)}
                 onSubmitEditing={createChat}
                 leftIcon={
-                    <Icon name="chatbubbles-outline" type="antdesign" size={24} color="#000" />
+                    <Icon name="chatbubbles-outline" type="antdesign" size={24} color="#000000" />
                 }
             />
             <Button onPress={createChat} title={'New Chat'} />
@@ -49,7 +49,9 @@ export default AddChatScreen;
 
 const styles = StyleSheet.create({
     container: {
-
+        backgroundColor: '#ffffff',
+        padding: 30,
+        height: '100',
     }
 })
 

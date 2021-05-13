@@ -10,6 +10,7 @@ import LoginScreen from './screenscomponents/LoginScreen';
 import RegisterScreen from './screenscomponents/RegisterScreen'
 import HomeScreen from './screenscomponents/HomeScreen';
 import AddChatScreen from './screenscomponents/AddChatScreen';
+import ChatScreen from './screenscomponents/ChatScreen';
 
 
 // Creating the Stack Navigator & global screen options styling
@@ -28,6 +29,7 @@ export default function App() {
         <Stack.Screen name='Register' component={RegisterScreen} />
         <Stack.Screen name='Home' component={HomeScreen} />
         <Stack.Screen name='AddChat' component={AddChatScreen} />
+        <Stack.Screen name='Chat' component={ChatScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

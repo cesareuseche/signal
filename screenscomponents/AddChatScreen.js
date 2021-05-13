@@ -23,7 +23,7 @@ const AddChatScreen = ({ navigation }) => {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            title: 'Add a new Chat',
+            title: 'New Chat',
             headerBackTitle: 'Chats'
         })
     }, [])
@@ -39,7 +39,7 @@ const AddChatScreen = ({ navigation }) => {
                     <Icon name="chatbubbles-outline" type="antdesign" size={24} color="#000000" />
                 }
             />
-            <Button onPress={createChat} title={'New Chat'} />
+            <Button onPress={createChat} title={'Create'} />
 
         </View>
     )

@@ -2,9 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { ListItem, Avatar } from 'react-native-elements'
 
-const CustomListItem = () => {
+const CustomListItem = ({ id, chatName, enterChat }) => {
     return (
-        <ListItem>
+        <ListItem key={id} bottomDividder>
             <Avatar
                 rounded
                 source={{
@@ -15,7 +15,7 @@ const CustomListItem = () => {
             />
             <ListItem.Content>
                 <ListItem.Title style={{ fontWeight: "600" }}>
-                    Signal Chat
+                    {chatName}
                 </ListItem.Title>
                 <ListItem.Subtitle numberOfLines={1} ellipsizeMode="tail">
                     This is a Subtitle

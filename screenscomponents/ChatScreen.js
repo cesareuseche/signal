@@ -101,12 +101,22 @@ export default ChatScreen
 
 const styles = StyleSheet.create({
     container: {
-
+        flex: 1,
     },
     footer: {
-
+        alignItems: "center",
+        flexDirection: "row",
+        padding: 15,
+        width: "100%",
     },
     textInput: {
-
+        bottom: 0,
+        height: 40,
+        flex: 1,
+        marginRight: 15,
+        backgroundColor: "#ececec",
+        padding: 10,
+        color: "gray",
+        borderRadius: 30,
     }
 })

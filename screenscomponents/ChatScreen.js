@@ -108,7 +108,19 @@ const ChatScreen = ({ navigation, route }) => {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <>
                         <ScrollView>
-                            {/*Chat Here */}
+                            {messages.map(({ id, data }) => (
+                                data.email === auth.currentUser.email ? (
+                                    <View key={id} style={styles.reciever}>
+                                        <Avatar />
+                                        <Text style={styles.recieverText}>{data.message}</Text>
+                                    </View>
+                                ) : (
+                                        <View style={styles.sender}>
+                                            <Avatar />
+                                            <Text style={styles.senderText}>{data.message}</Text>
+                                        </View>
+                                    )
+                            ))}
                         </ScrollView>
                         <View style={styles.footer}>
                             <TextInput

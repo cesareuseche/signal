@@ -1,9 +1,10 @@
 import React, { useLayoutEffect } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-//Avatar placeholder
+//Avatar placeholder & Icons
 import { Avatar } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons'
-
+import Ionicons from "react-native-vector-icons/Ionicons"
+import FontAwesome from "react-native-vector-icons/FontAwesome"
 
 const ChatScreen = ({ navigation, route }) => {
 
@@ -36,6 +37,23 @@ const ChatScreen = ({ navigation, route }) => {
                 <TouchableOpacity style={{ marginLeft: 10 }} onPress={navigation.goBack}>
                     <AntDesign name="left" size={24} color={"#ffffff"} />
                 </TouchableOpacity>
+            ),
+            headerRight: () => (
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        width: 80,
+                        marginRight: 20,
+                    }}
+                >
+                    <TouchableOpacity>
+                        <FontAwesome name="video-camera" size={24} color="#ffffff" />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Ionicons name="call" size={24} color="#ffffff" />
+                    </TouchableOpacity>
+                </View>
             )
         })
     }, [navigation])

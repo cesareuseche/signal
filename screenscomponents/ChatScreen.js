@@ -1,19 +1,51 @@
 import React, { useLayoutEffect, useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidingView, Platform, ScrollView, TextInput } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidingView, Platform, ScrollView, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { StatusBar } from 'expo-status-bar';
 //Avatar placeholder & Icons
 import { Avatar } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons'
 import Ionicons from "react-native-vector-icons/Ionicons"
 import FontAwesome from "react-native-vector-icons/FontAwesome"
-import { StatusBar } from 'expo-status-bar';
-
+// Importing the db from firebase
+import { auth, db } from '../firebase';
+// Importing firebase for the timestamp
+import * as firebase from 'firebase';
 
 const ChatScreen = ({ navigation, route }) => {
 
     const [input, setInput] = useState("");
-    const sendMessage = () => {
+    const [messages, setMessages] = useState([])
 
+    //Send Message Functiom 
+    const sendMessage = () => {
+        Keyboard.dismiss();
+        db.collection('chats').doc(route.params.id).collection('messages').add({
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(), //timestamp functionality from the firebase server
+            message: input,
+            displayName: auth.currentUser.displayName, //display the name of the user who is sending the message
+            email: auth.currentUser.email,
+            photoURL: auth.currentUser.photoURL //display the image of the user 
+        })
+
+        setInput('') //clearing out the input 
     }
+
+    useLayoutEffect(() => {
+        const unsubscribe = db
+            .collection('chats')
+            .doc(route.params.id)
+            .collection('messages')
+            .orderBy('timestamp', 'desc')
+            .onSnapshot((snapshot) => setMessages(
+                snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    data: doc.id
+                }))
+            ))
+
+        return unsubscribe;
+
+    }, [route])
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -73,25 +105,28 @@ const ChatScreen = ({ navigation, route }) => {
                 style={styles.container}
                 keyboardVerticalOffset={90}
             >
-                <React.Fragment>
-                    <ScrollView>
-                        {/*Chat Here */}
-                    </ScrollView>
-                    <View style={styles.footer}>
-                        <TextInput
-                            value={input}
-                            onChangeText={(text) => setInput(text)}
-                            style={styles.textInput}
-                            placeholder="Message..."
-                        />
-                        <TouchableOpacity
-                            onPress={sendMessage}
-                            activeOpacity={0.5}
-                        >
-                            <Ionicons name="send" size={24} color="#2B68E6" />
-                        </TouchableOpacity>
-                    </View>
-                </React.Fragment>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <>
+                        <ScrollView>
+                            {/*Chat Here */}
+                        </ScrollView>
+                        <View style={styles.footer}>
+                            <TextInput
+                                value={input}
+                                onChangeText={(text) => setInput(text)}
+                                onSubmitEditing={sendMessage}
+                                style={styles.textInput}
+                                placeholder="Message..."
+                            />
+                            <TouchableOpacity
+                                onPress={sendMessage}
+                                activeOpacity={0.5}
+                            >
+                                <Ionicons name="send" size={24} color="#2B68E6" />
+                            </TouchableOpacity>
+                        </View>
+                    </>
+                </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
         </SafeAreaView>
     )

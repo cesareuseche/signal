@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidingView, Platform, ScrollView, TextInput } from 'react-native'
 //Avatar placeholder & Icons
 import { Avatar } from 'react-native-elements';
@@ -9,6 +9,11 @@ import { StatusBar } from 'expo-status-bar';
 
 
 const ChatScreen = ({ navigation, route }) => {
+
+    const [input, setInput] = useState("");
+    const sendMessage = () => {
+
+    }
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -73,9 +78,18 @@ const ChatScreen = ({ navigation, route }) => {
                         {/*Chat Here */}
                     </ScrollView>
                     <View style={styles.footer}>
-                        <TextInput style={styles.textInput}
+                        <TextInput
+                            value={input}
+                            onChangeText={(text) => setInput(text)}
+                            style={styles.textInput}
                             placeholder="Message..."
                         />
+                        <TouchableOpacity
+                            onPress={sendMessage}
+                            activeOpacity={0.5}
+                        >
+                            <Ionicons name="send" size={24} color="#2B68E6" />
+                        </TouchableOpacity>
                     </View>
                 </React.Fragment>
             </KeyboardAvoidingView>

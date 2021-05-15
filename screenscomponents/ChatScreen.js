@@ -16,37 +16,6 @@ const ChatScreen = ({ navigation, route }) => {
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([])
 
-    //Send Message Functiom 
-    const sendMessage = () => {
-        Keyboard.dismiss();
-        db.collection('chats').doc(route.params.id).collection('messages').add({
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(), //timestamp functionality from the firebase server
-            message: input,
-            displayName: auth.currentUser.displayName, //display the name of the user who is sending the message
-            email: auth.currentUser.email,
-            photoURL: auth.currentUser.photoURL //display the image of the user 
-        })
-
-        setInput('') //clearing out the input 
-    }
-
-    useLayoutEffect(() => {
-        const unsubscribe = db
-            .collection('chats')
-            .doc(route.params.id)
-            .collection('messages')
-            .orderBy('timestamp', 'desc')
-            .onSnapshot((snapshot) => setMessages(
-                snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    data: doc.id
-                }))
-            ))
-
-        return unsubscribe;
-
-    }, [route])
-
     useLayoutEffect(() => {
         navigation.setOptions({
             title: "Chat",
@@ -97,6 +66,40 @@ const ChatScreen = ({ navigation, route }) => {
         })
     }, [navigation])
 
+    //Send Message Functiom 
+    const sendMessage = () => {
+        Keyboard.dismiss();
+        if (input && input !== "\n") {
+            db.collection('chats').doc(route.params.id).collection('messages').add({
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(), //timestamp functionality from the firebase server
+                message: input,
+                displayName: auth.currentUser.displayName, //display the name of the user who is sending the message
+                email: auth.currentUser.email,
+                photoURL: auth.currentUser.photoURL, //display the image of the user 
+            })
+
+            setInput('') //clearing out the input 
+        }
+
+    }
+
+    useLayoutEffect(() => {
+        const unsubscribe = db
+            .collection('chats')
+            .doc(route.params.id)
+            .collection('messages')
+            .orderBy('timestamp', 'desc')
+            .onSnapshot((snapshot) => setMessages(
+                snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    data: doc.data(),
+                }))
+            ))
+
+        return unsubscribe;
+
+    }, [route])
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff" }}>
             <StatusBar style="light" />
@@ -115,7 +118,7 @@ const ChatScreen = ({ navigation, route }) => {
                                         <Text style={styles.recieverText}>{data.message}</Text>
                                     </View>
                                 ) : (
-                                        <View style={styles.sender}>
+                                        <View key={id} style={styles.sender}>
                                             <Avatar />
                                             <Text style={styles.senderText}>{data.message}</Text>
                                         </View>
@@ -149,6 +152,16 @@ export default ChatScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    reciever: {
+        padding: 15,
+        backgroundColor: "#ececec",
+        alignSelf: "flex-end",
+        borderRadius: 20,
+        marginRight: 15,
+        marginBottom: 20,
+        maxWidth: "80%",
+        position: 'relative',
     },
     footer: {
         alignItems: "center",

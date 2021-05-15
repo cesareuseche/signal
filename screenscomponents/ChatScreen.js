@@ -114,13 +114,46 @@ const ChatScreen = ({ navigation, route }) => {
                             {messages.map(({ id, data }) => (
                                 data.email === auth.currentUser.email ? (
                                     <View key={id} style={styles.reciever}>
-                                        <Avatar />
+                                        <Avatar
+                                            //Web Element
+                                            containerStyle={{
+                                                position: "absolute",
+                                                bottom: -15,
+                                                right: -5,
+                                            }}
+                                            // Mobile Element
+                                            bottom={-15}
+                                            position="absolute"
+                                            right={-5}
+                                            rounded
+                                            size={24}
+                                            source={{
+                                                uri: data.photoURL,
+                                            }}
+                                        />
                                         <Text style={styles.recieverText}>{data.message}</Text>
                                     </View>
                                 ) : (
                                         <View key={id} style={styles.sender}>
-                                            <Avatar />
+                                            <Avatar
+                                                //Web Element
+                                                containerStyle={{
+                                                    position: "absolute",
+                                                    bottom: -15,
+                                                    right: -5,
+                                                }}
+                                                // Mobile Element
+                                                bottom={-15}
+                                                position="absolute"
+                                                right={-5}
+                                                rounded
+                                                size={24}
+                                                source={{
+                                                    uri: data.photoURL,
+                                                }}
+                                            />
                                             <Text style={styles.senderText}>{data.message}</Text>
+                                            <Text style={styles.senderName}>{data.displayName}</Text>
                                         </View>
                                     )
                             ))}
@@ -153,6 +186,27 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    sender: {
+        padding: 15,
+        backgroundColor: "#2B68E6",
+        alignSelf: "flex-start",
+        borderRadius: 20,
+        margin: 15,
+        maxWidth: "80%",
+        position: 'relative',
+    },
+    senderName: {
+        color: "#ffffff",
+        left: 10,
+        paddingRight: 10,
+        fontSize: 10,
+    },
+    senderText: {
+        color: "#ffffff",
+        fontWeight: "500",
+        marginLeft: 10,
+        marginBottom: 5,
+    },
     reciever: {
         padding: 15,
         backgroundColor: "#ececec",
@@ -162,6 +216,12 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         maxWidth: "80%",
         position: 'relative',
+    },
+    recieverText: {
+        color: "#000000",
+        fontWeight: "500",
+        marginLeft: 10,
+        marginBottom: 5,
     },
     footer: {
         alignItems: "center",

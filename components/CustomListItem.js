@@ -11,7 +11,7 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
             .collection('chats')
             .doc(id)
             .collection("messages")
-            .orderBy('timestamp', 'desc')
+            .orderBy('timestamp', 'asc')
             .onSnapshot((snapshot) => {
                 setChatMessages(snapshot.docs.map((doc) => doc.data()))
             })

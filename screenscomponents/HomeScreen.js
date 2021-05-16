@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView, Text, View, TouchableOpacity } from 'react-nati
 import { SafeAreaView } from 'react-native'
 //Importing Icons and Avatar placeholder
 import { Avatar } from 'react-native-elements'
-import { AntDesign } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 // Importing auth
 import { auth, db } from '../firebase';
@@ -55,7 +55,7 @@ const HomeScreen = ({ navigation }) => {
                 }}
                 >
                     <TouchableOpacity activeOpacity={0.5}>
-                        <AntDesign name='camerao' size={24} color='#000000' marginRight="8" />
+                        <Ionicons name='camera-outline' size={24} color='#000000' marginRight="8" />
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('AddChat')} activeOpacity={0.5}>

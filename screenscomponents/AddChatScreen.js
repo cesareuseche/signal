@@ -4,6 +4,7 @@ import { Button, Input } from "react-native-elements"
 import Icon from "react-native-vector-icons/Ionicons"
 // Importing the db from firebase
 import { db } from '../firebase';
+import { StatusBar } from 'expo-status-bar';
 
 const AddChatScreen = ({ navigation }) => {
     const [input, setInput] = useState("");
@@ -30,6 +31,7 @@ const AddChatScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <StatusBar style="light" />
             <Input
                 placeholder="Enter a chat name"
                 value={input}

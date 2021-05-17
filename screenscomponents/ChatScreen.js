@@ -58,10 +58,10 @@ const ChatScreen = ({ navigation, route }) => {
                     }}
                 >
                     <TouchableOpacity>
-                        <FontAwesome name="video-camera" size={24} color="#ffffff" />
+                        <Ionicons name="videocam-outline" size={24} color="#ffffff" />
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Ionicons name="call" size={24} color="#ffffff" />
+                        <Ionicons name="ios-call-outline" size={24} color="#ffffff" />
                     </TouchableOpacity>
                 </View>
             )

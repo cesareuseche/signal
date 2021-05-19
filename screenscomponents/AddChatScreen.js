@@ -41,7 +41,7 @@ const AddChatScreen = ({ navigation }) => {
                     <Icon name="chatbubbles-outline" type="antdesign" size={24} color="#000000" />
                 }
             />
-            <Button onPress={createChat} title={'Create'} />
+            <Button disabled={!input} onPress={createChat} title={'Create'} />
 
         </View>
     )

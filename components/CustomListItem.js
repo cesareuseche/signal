@@ -38,7 +38,7 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
                     {chatName}
                 </ListItem.Title>
                 <ListItem.Subtitle numberOfLines={1} ellipsizeMode="tail">
-                    {chatMessages?.[0]?.displayName}: {chatMessages?.[0]?.message}
+                    {chatMessages?.[0]?.displayName} : {chatMessages?.[0]?.messages}
                 </ListItem.Subtitle>
             </ListItem.Content>
 

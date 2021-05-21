@@ -19,7 +19,7 @@ const HomeScreen = ({ navigation }) => {
     // Sign out Function
     const signOutUser = () => {
         auth.signOut().then(() => {
-            navigation.replace('Login')
+            navigation.replace('Cmessage Sign In')
         });
     };
 
@@ -35,7 +35,7 @@ const HomeScreen = ({ navigation }) => {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            title: "Signal",
+            title: "Cmessage",
             headerStyle: { backgroundColor: "#ffffff" },
             headerTitleStyle: { color: "#000000" },
             headerTintColor: "#000000",

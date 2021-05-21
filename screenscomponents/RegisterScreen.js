@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { KeyboardAvoidingView } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
-import { Button, Input, Text } from "react-native-elements"
+import { Button, Input, Text, Image } from "react-native-elements"
 //Importing auth
 import { auth } from '../firebase';
 
@@ -34,8 +34,11 @@ const RegisterScreen = ({ navigation }) => {
     return (
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <StatusBar style='light' />
+            <Image source={require('../assets/Cmessage-icon.png')}
+                style={{ width: 200, height: 200, marginBottom: 10, }}
+            />
             <Text h3 style={{ marginBottom: 50 }}>
-                Create a Signal account
+                Create a Cmessage Account
             </Text>
             <View style={styles.inputContainer}>
                 <Input placeholder="Full Name" autofocus

@@ -31,11 +31,8 @@ const LoginScreen = ({ navigation }) => {
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <StatusBar style="light" />
-            <Image source={{
-                uri:
-                    "https://blog.mozilla.org/internetcitizen/files/2018/08/signal-logo.png",
-            }}
-                style={{ width: 200, height: 200 }}
+            <Image source={require('../assets/Cmessage-icon.png')}
+                style={{ width: 200, height: 200, marginBottom: 10, }}
             />
             <View style={styles.InputContainer}>
                 <Input
@@ -53,7 +50,7 @@ const LoginScreen = ({ navigation }) => {
                     onSubmitEditing={signIn}
                 />
             </View>
-            <Button title="Login" containerStyle={styles.button} onPress={signIn} />
+            <Button title="Sign In" containerStyle={styles.button} onPress={signIn} />
             <Button title="Register" type="outline" containerStyle={styles.button} onPress={() => navigation.navigate('Register')} />
             <View style={{ height: 100 }} />
         </KeyboardAvoidingView>

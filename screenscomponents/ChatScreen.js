@@ -11,7 +11,7 @@ import { auth, db } from '../firebase';
 // Importing firebase for the timestamp
 import * as firebase from 'firebase';
 
-const ChatScreen = ({ navigation, route }) => {
+const ChatScreen = ({ navigation, route, timestamp }) => {
 
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([])

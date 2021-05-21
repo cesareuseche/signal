@@ -16,7 +16,7 @@ const RegisterScreen = ({ navigation }) => {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerBackTitle: 'Login'
+            headerBackTitle: 'Sign In'
         })
     }, [navigation])
 
